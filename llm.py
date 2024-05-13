@@ -1,5 +1,6 @@
 import base64
 import anthropic
+import streamlit as st
 
 client = anthropic.Anthropic()
 
@@ -10,6 +11,7 @@ Title should contain the brand name.
 """.strip()
 
 
+@st.cache_data
 def get_item_description(image):
     img1_base64 = base64.b64encode(image.read()).decode("utf-8")
     message = client.messages.create(
